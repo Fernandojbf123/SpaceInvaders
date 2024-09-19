@@ -34,6 +34,7 @@ export class PlayerInput{
     }
 
     keyDown(key){
+        console.log(this.keys)
         if (this.keys.includes(key) === false) {
             this.keys.push(key)
         }
