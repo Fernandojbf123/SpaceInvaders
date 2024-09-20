@@ -1,6 +1,7 @@
 import { Player } from "./player.js";
 import { PlayerInput } from "./playerInput.js";
 import { Projectile } from "./projectile.js";
+import { Wave } from "./wave.js";
 
 
 class Game{
@@ -8,11 +9,24 @@ class Game{
         this.canvas = canvas;
         this.width  = this.canvas.width;
         this.height = this.canvas.height;
+        
+        
         this.player = new Player(this);
         this.input  = new PlayerInput(this);
+        
+        // Projectiles
         this.projectilesPool = [];
         this.numberOfProjectiles = 10;
         this.createProjectiles();
+
+        // Enemy waves
+        this.columns = 3;
+        this.rows = 3;
+        this.enemyWidth = 60;
+        this.enemyHeight = 60;
+
+        this.waves = [];
+        this.waves.push(new Wave(this));
     }
 
     
@@ -20,11 +34,18 @@ class Game{
     render(ctx){
         this.player.draw(ctx);
         this.player.update();
+        
+        // Projectiles poll
         this.projectilesPool.forEach ( projectile => {
             projectile.update();
             projectile.draw(ctx);
-            
         })
+
+        // Render waves
+        this.waves.forEach ( wave =>  {
+            wave.render(ctx)
+        })
+        
     }
 
     // Create projectiles object pool
