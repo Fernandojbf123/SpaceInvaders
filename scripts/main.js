@@ -65,6 +65,16 @@ class Game{
         }
     }
 
+    checkColission(a, b) {
+        //a and b are rectangles that must have x,y, width and height properties.
+        return(
+            a.x <= b.x + b.width &&
+            a.x + a.width >= b.x &&
+            a.y <= b.y + b.width &&
+            a.y + a.height >= b.y
+        )
+    }
+
 }
 
 window.addEventListener('load', function () {

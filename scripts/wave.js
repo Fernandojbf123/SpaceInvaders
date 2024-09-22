@@ -6,7 +6,7 @@ export class Wave{
         this.width = this.game.columns * this.game.enemyWidth;
         this.height = this.game.rows * this.game.enemyHeight;
         this.positionX = 0;
-        this.positionY = 0;//-this.height;
+        this.positionY = -this.height;
         this.speedX = 3;
         this.speedY = 0;
         this.enemies = [];

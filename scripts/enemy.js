@@ -21,5 +21,9 @@ export class Enemy{
     update(wavePosX,wavePosY){
         this.x = wavePosX + this.positionX; //current wave position + relative position
         this.y = wavePosY + this.positionY;
+        
+        //check colission enemy - projectile
+        this.game.checkColission(this, this.game.projectile)
+        
     }
 }

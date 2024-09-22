@@ -34,7 +34,6 @@ export class PlayerInput{
     }
 
     keyDown(key){
-        console.log(this.keys)
         if (this.keys.includes(key) === false) {
             this.keys.push(key)
         }
@@ -42,7 +41,10 @@ export class PlayerInput{
 
     keyUp(key){
         const index = this.keys.indexOf(key)
-        this.keys.splice(index,1);
+        if (index !== -1){
+            this.keys.splice(index,1);
+        }
+        
     }
 
     
