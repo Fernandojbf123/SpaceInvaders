@@ -11,16 +11,17 @@ export class Projectile {
 
     draw (ctx){
         ctx.fillStyle = 'white';
-        ctx.fillRect(this.x , this.y, this.width, this.height)
+        if (!this.isFree){
+            ctx.fillRect(this.x , this.y, this.width, this.height)
+        }
     }
 
     update(){
         if (!this.isFree){
             this.y -= this.speed;
-        }
-
-        if (this.y < -this.height){   //if projectile goes out of screen or colides with enemy. checkColission is method of game and it is recommended that colission is checked on the enemies
-            this.reset();
+            if (this.y < -this.height){   //if projectile goes out of screen or colides with enemy. checkColission is method of game and it is recommended that colission is checked on the enemies
+                this.reset();
+            }
         }
     }
 

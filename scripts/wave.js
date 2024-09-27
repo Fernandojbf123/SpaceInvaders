@@ -40,6 +40,8 @@ export class Wave{
             enemy.update(this.positionX, this.positionY);
             enemy.draw(ctx)
         })
+
+        this.enemies = this.enemies.filter( enemy => !enemy.isMarkedForDeletion)
         
     }
 

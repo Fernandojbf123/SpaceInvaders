@@ -10,7 +10,8 @@ export class Enemy{
         
         this.positionX = enemyX; // Position of the enemy relative to grid
         this.positionY = enemyY; // Position of the enemy relative to grid
-        // console.log(`x = ${this.positionX} y = ${this.positionY}`)
+        
+        this.isMarkedForDeletion = false;
     }
 
     draw(ctx){
@@ -23,7 +24,18 @@ export class Enemy{
         this.y = wavePosY + this.positionY;
         
         //check colission enemy - projectile
-        this.game.checkColission(this, this.game.projectile)
-        
+        this.game.projectilesPool.forEach( projectile => {
+            if(!projectile.isFree && this.game.checkColission(this, projectile)){
+                projectile.reset()
+                this.isMarkedForDeletion = true;
+                this.game.score++;
+            }
+        });
+
+        // Lose condition
+        if (this.y + this.height > this.game.height){
+            this.game.gameOver = true;
+            this.isMarkedForDeletion = true;
+        }
     }
 }
